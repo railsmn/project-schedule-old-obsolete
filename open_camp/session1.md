@@ -15,10 +15,10 @@ explain the difference between websites // web apps (applications).
 
 ## Logistics  
 
-1. Setting up a Rails development env (if you have not installed Rails).
+1. __Setting up a Rails development env (if you have not installed Rails).__  
 Getting Ruby on Rails setup the first time can be tricky. But we have a great solution that makes it easy, [railsmn-dev-box](https://github.com/railsmn/railsmn-dev-box). Checkout the README.md for install setups.
 
-2. Text editor. 
+2. __Text editor.__  
 You'll want to have good text editor as your create build the OpenCamp rails web app. Here's a couple suggestions per Operating System, but there are many options.
 
   * Windows  
@@ -34,8 +34,11 @@ You'll want to have good text editor as your create build the OpenCamp rails web
     ++ [Gedit](http://projects.gnome.org/gedit/)  
 
 
-3. We will be using the command line // terminal a lot.
+3. __We will be using the command line // terminal a lot.__
 Rails utilizes the unix command line // terminal commands. This may be confusing and/or frustrating at first, but we would like to challenge you to embrace the command line operations we walk through. It may be hard at first, but once you get comfortable with the command line operations, you'll feel like a super hero navigating the Rails universe. We promise!
+
+4. __We will be using Git.__  
+Git is code "version control system". In non-technical terms, it backups of your code. The power of git is that you can create checkpoints (by making a "commit") as you write code and transverse back and forth to the various checkpoints (commits) you create. We'll explain this along the way.  
 
 
 
@@ -212,6 +215,8 @@ Creates a controller, ````/open_camp/app/controllers/tasks_controller.rb````
 Creates views, ````/open_camp/app/views/*````
 
 
+### Run the database migration
+
 Let's update the database to hold ````task```` entries, 
 
     # run the database migration (update the db schema)
@@ -225,6 +230,8 @@ Let's update the database to hold ````task```` entries,
     ==  CreateTasks: migrated (0.0038s) ===========================================
 
 
+### See it in the browser
+
 Let's test it out in the browser
     
     # start the built in rails server
@@ -235,19 +242,117 @@ Let's test it out in the browser
     # http://localhost:3000/tasks
 
 
-build non-scaffolded MVC object, Note.  
-create the controller + views for new/show/edit/index.  
-- content should be static.  
-create the migration + migration.  
-- Note object, subject, body
-create partial form  
-create the object and confirm via command line.  
-redirect action.  
-build index action and page.  
-build show action and page.  
-build edit action and pag (and update).  
-build destroy action.  
+### Building 2nd Rails MVC - from scratch
 
-  
+Great. Now that we have fully functioning Rails MVC component, let's build another without using ````scaffold```` command. The ````scaffold```` command was a great start, but we want to help you think through how the MVC pieces fit together so you can create & code whatever you dream up.
+
+
+### Model
+
+We'll start with ceating a Model.  
+
+    rails generate model Note title:string body:text
+
+    # resulting output
+    #
+    invoke  active_record
+    create    db/migrate/20130408131003_create_notes.rb
+    create    app/models/note.rb
+    invoke    test_unit
+    create      test/unit/note_test.rb
+    create      test/fixtures/notes.yml
+
+Notice that the ````rails generate model```` command created a migration automatically. That's because Rails assumes mangement of the database and because all models are 90% of the time mapped back to a database table. Thus, when we create a model, Rails creates the underlying database table too.  
+
+Notice that the ````rails generate model```` command also created a "test unit files". Rails assumes that you want to use automated testing as you write code. We'll cover testing later. So just leave those files for now.  
+
+Open the ````open_camp/app/models/note.rb```` file just to see what's in there,   
+
+    # open_camp/app/models/note.rb
+
+    class Note < ActiveRecord::Base
+      attr_accessible :body, :title
+    end
+
+
+### Controller
+
+Next, let's create the controller, 
+
+    rails generate controller Note index show new edit create update delete
+
+    # resulting output
+    #
+    create  app/controllers/note_controller.rb
+     route  get "note/delete"
+     route  get "note/update"
+     route  get "note/create"
+     route  get "note/edit"
+     route  get "note/new"
+     route  get "note/show"
+     route  get "note/index"
+    invoke  erb
+    create    app/views/note
+    create    app/views/note/index.html.erb
+    create    app/views/note/show.html.erb
+    create    app/views/note/new.html.erb
+    create    app/views/note/edit.html.erb
+    create    app/views/note/create.html.erb
+    create    app/views/note/update.html.erb
+    create    app/views/note/delete.html.erb
+    invoke  test_unit
+    create    test/functional/note_controller_test.rb
+    invoke  helper
+    create    app/helpers/note_helper.rb
+    invoke    test_unit
+    create      test/unit/helpers/note_helper_test.rb
+    invoke  assets
+    invoke    coffee
+    create      app/assets/javascripts/note.js.coffee
+    invoke    scss
+    create      app/assets/stylesheets/note.css.scss
+
+
+This creates the basic structure for the controller, but we'll need to go back and customize the details how it functions.
+
+### Controller - change index action
+- routes 
+- controller
+- views
+
+### Controller - change new action
+- routes 
+- controller
+- views
+
+
+### Controller - change create action
+- routes 
+- controller
+- views
+
+### Test it - create a Note
+
+### Controller - change show action
+- routes 
+- controller
+- views
+
+### Test it - show a Note
+
+### Controller - change update action
+- routes 
+- controller
+- views
+
+### Test it - edit a Note
+- routes 
+- controller
+- views
+
+### Controller - change destroy action
+- routes 
+- controller
+- views  
 
 
