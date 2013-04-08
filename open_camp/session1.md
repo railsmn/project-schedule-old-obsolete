@@ -347,6 +347,8 @@ This creates the basic structure for the controller, but we'll need to go back a
 =======
 ## Rails/Web Development topics presentation (30 minutes)
 
+[Link to presentation slides](http://railsmn.github.io/convention-mvc-rest.html)
+
 ### 3 guiding principles of Rails and what they mean for web development
 
 - Convention over Configuration
