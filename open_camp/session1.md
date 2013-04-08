@@ -161,7 +161,7 @@ We want to create Model, Controller, and View. This will allow Create/Read/Updat
     # object       = Task
     # attributes   = name:string description:string
     #
-    rails genearte scaffold Task name:string description:string
+    rails generate scaffold Task name:string description:string
 
     # resulting output
     #
