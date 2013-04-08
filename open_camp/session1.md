@@ -1,9 +1,7 @@
 
-## Welcome!  
+# Welcome!  
 
-
-
-## Purpose of building OpenCamp  
+## Purpose of building OpenCamp / Intro (30 minutes) 
 
 why rails.  
 
@@ -13,7 +11,7 @@ explain the difference between websites // web apps (applications).
 
 
 
-## Logistics  
+### Logistics  
 
 1. __Setting up a Rails development env (if you have not installed Rails).__  
 Getting Ruby on Rails setup the first time can be tricky. But we have a great solution that makes it easy, [railsmn-dev-box](https://github.com/railsmn/railsmn-dev-box). Checkout the README.md for install setups.
@@ -38,21 +36,11 @@ You'll want to have good text editor as your create build the OpenCamp rails web
 Rails utilizes the unix command line // terminal commands. This may be confusing and/or frustrating at first, but we would like to challenge you to embrace the command line operations we walk through. It may be hard at first, but once you get comfortable with the command line operations, you'll feel like a super hero navigating the Rails universe. We promise!
 
 4. __We will be using Git.__  
-Git is code "version control system". In non-technical terms, it backups of your code. The power of git is that you can create checkpoints (by making a "commit") as you write code and transverse back and forth to the various checkpoints (commits) you create. We'll explain this along the way.  
+Git is a code "version control system". In non-technical terms, it iteratively saves changes to your code. The power of git is that you can create checkpoints (by making a "commit") as you write code and transverse back and forth to the various checkpoints (commits). We'll explain this along the way.  
 
 
 
-## Session 1  
-
-### High level talking points
-
-Rails MVC  
-Postgresql (databases)  
-Rails assumes control of the database  
-HTTP and REST  
-Rails Methodology: convention > configuration
-  
-
+## Session 1 hack-time (1.5 hours)
 
 ### Create the OpenCamp rails app
 
@@ -354,5 +342,29 @@ This creates the basic structure for the controller, but we'll need to go back a
 - routes 
 - controller
 - views  
+
+
+=======
+## Rails/Web Development topics presentation (30 minutes)
+
+### 3 guiding principles of Rails and what they mean for web development
+
+- Convention over Configuration
+    - Ruby on Rails makes opionated decisions ('the Rails way') about a lot of common trivial decisions a web developer has to make to maximize developer productivity. Some of these conventions include how to name things in your code, where to put files, handling common security related issues, what template handler to use, how to compile 'assets' in production, etc
+    - Creates established sets of 'best practices' that you can leverage in your application and makes it easy to understand other Rails applications
+- MVC
+    - Model, View, Controller (MVC) is a web development 'architecture' that specifies how the responsibilities of your code should be organized. This pattern makes it easy to understand what your code is doing and as a result easier to maintain. Model code represents data and its interaction with your databases in your application, View code represent the user interface (html with embedded Ruby code) and Controllers represent the business logic or 'the glue' between your Model code and View code
+- REST
+    - REST gives an easy to understand URL structure that corresponds to the resources (e.g. blog posts, users, etc) of your application which also creates another set of conventions that makes Rails development more seamless. REST is also the most accepted standard for which web applications can communicate with each other (e.g. your application pulling data from Twitter)
+
+### Databases 
+
+- What is a database
+    - SQL
+- How Rails interacts with databases 
+    - What is an ORM?
+    - ActiveRecord
+- Different types of databases
+    - Relational (MySQL, PostgreSQL, Oracle) vs non-relational (MongoDB, Redis, etc)
 
 
