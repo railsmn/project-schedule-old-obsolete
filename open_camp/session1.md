@@ -151,13 +151,13 @@ We need to change the encoding to ````SQL_ASCII````. Again, the ````rails-dev-bo
 
 ### Create Databases  
 
-To create the databases (development and test)
+To create the databases (development and test)  
 
-   # make sure you are in the rails app, IE
-   # 
-   # vm -- /vagrant/open_camp
-   #
-   rake db:create
+    # make sure you are in the rails app, IE
+    # 
+    # vm -- /vagrant/open_camp
+    #
+    rake db:create
 
 
 ### Create a rails MVC component
@@ -216,7 +216,6 @@ Let's update the database to hold ````task```` entries,
 
     # run the database migration (update the db schema)
     rake db:migrate
-
 
     ==  CreateTasks: migrating ====================================================
     -- create_table(:tasks)
