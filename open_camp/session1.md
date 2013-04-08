@@ -41,15 +41,25 @@ Rails utilizes the unix command line // terminal commands. This may be confusing
 
 ## Session 1  
 
-### High level talking points
+### 3 guiding principles of Rails and what they mean for web development
 
-Rails MVC  
-Postgresql (databases)  
-Rails assumes control of the database  
-HTTP and REST  
-Rails Methodology: convention > configuration
-  
+- Convention over Configuration
+    - Ruby on Rails makes opionated decisions ('the Rails way') about a lot of common trivial decisions a web developer has to make to maximize developer productivity. Some of these conventions include how to name things in your code, where to put files, handling common security related issues, what template handler to use, how to compile 'assets' in production, etc
+    - Creates established sets of 'best practices' that you can leverage in your application and makes it easy to understand other Rails applications
+- MVC
+    - Model, View, Controller (MVC) is a web development 'architecture' that specifies how the responsibilities of your code should be organized. This pattern makes it easy to understand what your code is doing and as a result easier to maintain. Model code represents data and its interaction with your databases in your application, View code represent the user interface (html with embedded Ruby code) and Controllers represent the business logic or 'the glue' between your Model code and View code
+- REST
+    - REST gives an easy to understand URL structure that corresponds to the resources (e.g. blog posts, users, etc) of your application which also creates another set of conventions that makes Rails development more seamless. REST is also the most accepted standard for which web applications can communicate with each other (e.g. your application pulling data from Twitter)
 
+### Databases 
+
+- What is a database
+    - SQL
+- How Rails interacts with databases 
+    - What is an ORM?
+    - ActiveRecord
+- Different types of databases
+    - Relational (MySQL, PostgreSQL, Oracle) vs non-relational (MongoDB, Redis, etc)
 
 ### Create the OpenCamp rails app
 
