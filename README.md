@@ -11,7 +11,7 @@ Before Each Session
 - Overview of the agenda for the nights session
 
 ### Hack time (90 minutes)
-- Walk through implementing OpenCamp features
+- Walk through implementing OpenCamp features as documented by the session writeups below
 - Will bring the group back together periodically to discuss what we've done
 - Mentors will roam and help you follow along with the directions
 
