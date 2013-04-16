@@ -14,16 +14,13 @@ Session 1 (April 8)
 
 
 Session 2
-- AJAX-ify the controller responses  
+- Authentication with Devise
 - Unit tests 
 
 Session 3  
-- AJAX-ify the controller responses  
-- Add notes  
+- Deploying app on Heroku
 
 Session 4  
-- Add user authentication  
-
 
 __Possible__ Advanced Topic: 
 - deeper JS stuff  
