@@ -9,6 +9,14 @@ As always, please remember to be vocal during these events and feel more than we
 #### 1. Welcome and logistics
 Enjoy pizza and beer and be sure to introduce yourself to other people learning Ruby on Rails!
 
+While doing that...
+  - Join the [RailsMN Google Group!](https://groups.google.com/forum/?fromgroups#!forum/railsmn)
+  - Follow [@RailsMN on Twitter!](http://www.twitter.com/railsmn)
+
+Per feedback, [Derek Rockwell](http://www.twitter.com/derekrockwell) and [Weston Platter](http://www.twitter.com/westonplatter) will introduce themselves.
+
+Thanks to our sponsors, Google for Entrepreneurs and CoCo Minneapolis for the awesome space, food and refreshments!
+
 #### 2. Session 1 Recap
 Last month we had our first event at CoCo! The goal of the event was to orient ourselves with the structure of sessions and make the initial strides towards building OpenCamp. Specifically we:
 
