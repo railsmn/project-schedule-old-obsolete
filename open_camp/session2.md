@@ -17,7 +17,7 @@ Per feedback, [Derek Rockwell](http://www.twitter.com/derekrockwell) and [Weston
 
 Thanks to our sponsors, Google for Entrepreneurs and CoCo Minneapolis for the awesome space, food and refreshments!
 
-#### 2. Session 1 Recap
+#### 2. [Session 1](https://github.com/railsmn/schedule/blob/master/open_camp/session1.md) - Recap
 Last month we had our first event at CoCo! The goal of the event was to orient ourselves with the structure of sessions and make the initial strides towards building OpenCamp. Specifically we:
 
 - Set up our virtual machine
@@ -26,10 +26,10 @@ Last month we had our first event at CoCo! The goal of the event was to orient o
   - (Potentially) Created a note object following the scaffold pattern
 - Discussed the importance of MVC, REST and databases within Ruby on Rails
 
-*TODO: INSERT LINK TO A TAG OF THE CODE BASE FINALIZING SESSION 1*
+[Here is a link to the codebase to be expected at the end of Session 1](https://github.com/railsmn/open_camp_session_1/tree/master/finish). If you haven't gotten yet to that point on your own, pull a mentor aside to figure out how to pull down the codebase we will be starting with today.
 
 #### 3. Update your Virtual Machine!
-We made some cool changes to our Virtual Machine image and fixed some glitches that will make your development experience smoother going forward (Ruby 2.0, default ssh directory, Rails installed (woopsy)). To make sure you are up to date with the correct environment, follow these steps:
+We made some changes to our Virtual Machine image and fixed some glitches that will make your development experience smoother going forward (e.g. Ruby 2.0, default ssh directory, Rails installed (woopsy)). To make sure you are up to date with the correct environment, follow these steps:
 
 1. Open a terminal and navigate to the directory where your existing virtual machine is stored, probably in a railsmn-dev-box folder. The below example is for me, your directory location may be different.
   
@@ -57,10 +57,18 @@ We made some cool changes to our Virtual Machine image and fixed some glitches t
   ```  
 
 #### 4. Session 2 Overview
-Doing things slightly different during hack time, lightning talks are structured slightly different from feedback. Etc, etc, etc.
+We made some slight changes to the structure of future sessions as a result of your feedback. 
 
-- Add user authentication
-- Create user tests
+Our introductory time will be used to summarize and go over what we've done with OpenCamp thus far.
+
+Our hack time is now going to be more compartmentalized! We'll give quick instructions for each subsection of the plan and bring the group back for a quick discussion about the previous step(s).
+
+Our advanced topics presentations will be slightly different. We'll now do 3 different topics, 10 minutes each in a lightning talk format. Mentors and members are encouraged to participate by volunteering to present on a relevant Rails/Web Development topic or best practice.
+
+The rest of this evening will be comprised of:
+
+- Adding user authentication
+- Creating user tests
 - Lightning talks 
   - Test Driven Development
   - Capybara
