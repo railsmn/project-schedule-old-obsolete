@@ -3,6 +3,10 @@ Before Each Session
 - **IMPORTANT: Make sure you have [followed the directions to install our Ruby on Rails virtual machine](https://github.com/railsmn/railsmn-dev-box)**
 - Catch up on the content from any previous sessions you may have missed
 
+Also be sure to:
+  - Join the [RailsMN Google Group!](https://groups.google.com/forum/?fromgroups#!forum/railsmn)
+  - Follow [@RailsMN on Twitter!](http://www.twitter.com/railsmn)
+
 ## Session agenda overview
 
 ### Introduction (30 minutes)
