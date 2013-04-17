@@ -5,6 +5,14 @@ Before Each Session
 - Join the [RailsMN Google Group!](https://groups.google.com/forum/?fromgroups#!forum/railsmn)
 - Follow [@RailsMN on Twitter!](http://www.twitter.com/railsmn)
 
+## Goal
+
+The objective of the 'Building OpenCamp' series is to provide a practical, hands-on, community based approach to teaching Ruby on Rails. 
+
+Each month we will have a new session that will build on the previous sessions to ultimately build what could be considered a minimal, open source implementation of Basecamp. Basecamp is a project management web application that Ruby on Rails was born out of.
+
+We hope this combination of mentorship, web development topic presentations and coding sessions will give you the motivation and push needed to teach you how to become a Ruby on Rails developer. As a caveat, learning is a give-and-take endeavour, so please provide us with feedback to help us make RailsMN better.
+
 ## Session agenda overview
 
 ### Introduction (30 minutes)
@@ -23,13 +31,6 @@ Before Each Session
 
 ## OpenCamp series  
 
-### [Session 1 (April 8)](https://github.com/railsmn/schedule/blob/master/open_camp/session1.md)
-- Introduction to the event series
-- Getting set up with the virtual machine
-- Creating the first lines of OpenCamp
-- Presentation on MVC, REST, databases and ActiveRecord
-
-
 ### [Session 2 (May 13)](https://github.com/railsmn/schedule/blob/master/open_camp/session2.md)
 - Update VM settings
 - Add user authentication
@@ -38,6 +39,13 @@ Before Each Session
   - Test Driven Development
   - Capybara
   - Git
+
+### [Session 1 (April 8)](https://github.com/railsmn/schedule/blob/master/open_camp/session1.md)
+- Introduction to the event series
+- Getting set up with the virtual machine
+- Creating the first lines of OpenCamp
+- Presentation on MVC, REST, databases and ActiveRecord
+
 
 ### Possible Future Topics: 
 - CoffeeScript
