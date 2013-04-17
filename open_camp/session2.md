@@ -42,6 +42,12 @@ We made some cool changes to our Virtual Machine image and fixed some glitches t
   vagrant up
   ```
 
+4. Now to connect back into our virtual machine we may SSH again as expected from last session. Note you no longer need to change to the /vagrant directory, as we set that to be the default behavior.
+
+  ```
+  vagrant ssh
+  ```  
+
 #### 4. Session 2 Overview
 Doing things slightly different during hack time, lightning talks are structured slightly different from feedback. Etc, etc, etc.
 
@@ -57,7 +63,7 @@ Doing things slightly different during hack time, lightning talks are structured
 #### 1. User authentication
 1. Install the Devise Gem
 
-  Explanation
+  Explanation (we should probably explain the concept of gems and link to some resources, follow suit with any other new concepts below)
 
   ```
   Code
@@ -138,7 +144,7 @@ Doing things slightly different during hack time, lightning talks are structured
   ```
 
   2. Do something
-  
+
   Explanation
 
   ```
