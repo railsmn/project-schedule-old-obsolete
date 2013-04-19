@@ -84,50 +84,27 @@ Rails development use a command line tool called, ````rake````. The name describ
 
 ### Database configuration
 
-We need to change the default postgresql configuration. We need to change the ````username```` and ````encoding````.
+Notice that there are 3 different "sections", deveolopment, test, production.  Each represents a Rails environment.  The idea is that you can tell a Rails app to run in development mode, test mode, or production mode, or another custom mode. Each environment or mode has advantages (EG, development mode will print out all SQL queries).
 
-We need to change the username to ````vagrant````. The ````rails-dev-box```` VM postgresql instance was setup with a ````vagrant```` user. [Here's where that username was specified](https://github.com/railsmn/railsmn-dev-box/blob/master/puppet/manifests/default.pp#L79).
+All that aside, we need to change the default values in the ````config/database.yml```` file for each environment.  
+1) Change  ````username````  from  ````open_camp````  to  ````vagrant````.  
+2) Change  ````encoding````  from  ````unciode````  to  ````ASCII_SQL````.
 
-    # config/database.yml
+The following file has the required username and encoding configuration changes.  Copy and paste this file into the database.yml file.
 
-    # OLD_DEVELOPMENT_CONFIGURATION
+    # PostgreSQL. Versions 8.2 and up are supported.
     #
-    development:
-      adapter: postgresql
-      encoding: unicode
-      database: open_camp_development
-      pool: 5
-      username: open_camp
-      password:
-    
-    # NEW_DEVELOPMENT_CONFIGURATION
+    # Install the pg driver:
+    #   gem install pg
+    # On Mac OS X with macports:
+    #   gem install pg -- --with-pg-config=/opt/local/lib/postgresql84/bin/pg_config
+    # On Windows:
+    #   gem install pg
+    #       Choose the win32 build.
+    #       Install PostgreSQL and put its /bin directory on your path.
     #
-    development:
-      adapter: postgresql
-      encoding: unicode
-      database: open_camp_development
-      pool: 5
-      username: vagrant
-      password:
-
-    # change username to vagrant for the __test__ and  __production__ dbs  
-    
-
-We need to change the encoding to ````SQL_ASCII````. Again, the ````rails-dev-box```` VM postgresql instance was setup with the default encoding as ````sql_ascii````. [Here's where that encoding was specified](https://github.com/railsmn/railsmn-dev-box/blob/master/puppet/modules/postgresql/templates/postgresql.conf.erb#L495).
-
-    # config/database.yml
-
-    # OLD_DEVELOPMENT_CONFIGURATION
-    #
-    development:
-      adapter: postgresql
-      encoding: unicode
-      database: open_camp_development
-      pool: 5
-      username: vagrant
-      password:
-    
-    # NEW_DEVELOPMENT_CONFIGURATION
+    # Configure Using Gemfile
+    # gem 'pg'
     #
     development:
       adapter: postgresql
@@ -137,7 +114,39 @@ We need to change the encoding to ````SQL_ASCII````. Again, the ````rails-dev-bo
       username: vagrant
       password:
 
-    # change encoding to SQL_ASCII for the __test__ and  __production__ dbs  
+      # Connect on a TCP socket. Omitted by default since the client uses a
+      # domain socket that doesn't need configuration. Windows does not have
+      # domain sockets, so uncomment these lines.
+      #host: localhost
+      #port: 5432
+
+      # Schema search path. The server defaults to $user,public
+      #schema_search_path: myapp,sharedapp,public
+
+      # Minimum log levels, in increasing order:
+      #   debug5, debug4, debug3, debug2, debug1,
+      #   log, notice, warning, error, fatal, and panic
+      # The server defaults to notice.
+      #min_messages: warning
+
+    # Warning: The database defined as "test" will be erased and
+    # re-generated from your development database when you run "rake".
+    # Do not set this db to the same as development or production.
+    test:
+      adapter: postgresql
+      encoding: SQL_ASCII
+      database: open_camp_test
+      pool: 5
+      username: vagrant
+      password:
+    
+    production:
+      adapter: postgresql
+      encoding: SQL_ASCII
+      database: open_camp_production
+      pool: 5
+      username: vagrant
+      password:
 
 
 ### Create Databases  
