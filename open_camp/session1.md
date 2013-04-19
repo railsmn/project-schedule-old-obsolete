@@ -82,7 +82,7 @@ Rails development use a command line tool called, ````rake````. The name describ
     rake -h
 
 
-### Database configuration
+### Database configuration  
 
 Notice that there are 3 different "sections", deveolopment, test, production.  Each represents a Rails environment.  The idea is that you can tell a Rails app to run in development mode, test mode, or production mode, or another custom mode. Each environment or mode has advantages (EG, development mode will print out all SQL queries).
 
@@ -139,7 +139,7 @@ The following file has the required username and encoding configuration changes.
       pool: 5
       username: vagrant
       password:
-    
+
     production:
       adapter: postgresql
       encoding: SQL_ASCII
@@ -151,19 +151,24 @@ The following file has the required username and encoding configuration changes.
 
 ### Create Databases  
 
-To create the databases (development and test)  
+Create the databases required for developig a rails app (development and test), 
 
-    # make sure you are in the rails app, IE
-    # 
-    # vm -- /vagrant/open_camp
+    # --------------------------------------
+    # NOTICE !
+    # --------
+    # RUN COMMAND IN /vagrant/open_camp
+    # --------------------------------------
     #
+    cd /vagrant/open_camp
     rake db:create
 
 
 ### Create a rails MVC component
 
-We want to create Model, Controller, and View. This will allow Create/Read/Update/Delete stuff in the web browser and see it in the database. We'll use the ````rails```` executable, and use the rails' ```generate```` command.
-
+We want to create Model, Controller, and View.  This will allow Create/Read/Update/Delete stuff in the web browser and see it in the database.  We'll use the ````rails```` executable, and use the rails' ````generate```` command.
+    
+    # Explanation behind the command
+    # 
     # executable   = rails
     # command      = generate
     # type         = scaffold
@@ -172,8 +177,8 @@ We want to create Model, Controller, and View. This will allow Create/Read/Updat
     #
     rails generate scaffold Task name:string description:string
 
-    # resulting output
-    #
+You should the following output in your terminal,  
+
     invoke  active_record
     create    db/migrate/20130408045955_create_tasks.rb
     create    app/models/task.rb
@@ -206,18 +211,28 @@ We want to create Model, Controller, and View. This will allow Create/Read/Updat
     create    app/assets/stylesheets/scaffolds.css.scss
 
 
-Creates a database migration
-Creates a model, ````/open_camp/app/models/task.rb````
-Creates a controller, ````/open_camp/app/controllers/tasks_controller.rb````
-Creates views, ````/open_camp/app/views/*````
+Creates a database migration  
+Creates a model, ````/open_camp/app/models/task.rb````  
+Creates a controller, ````/open_camp/app/controllers/tasks_controller.rb````  
+Creates views, ````/open_camp/app/views/*````  
 
 
 ### Run the database migration
 
-Let's update the database to hold ````task```` entries, 
+Use the  ````rake````  command to run the db migration to create  ````task```` table,  
 
-    # run the database migration (update the db schema)
+    # --------------------------------------
+    # NOTICE !
+    # --------
+    # RUN COMMAND IN /vagrant/open_camp
+    # --------------------------------------
+    #
+    # run all outstanding database migrations
+    #
+    cd /vagrant/open_camp
     rake db:migrate
+
+You should the following output in your terminal,  
 
     ==  CreateTasks: migrating ====================================================
     -- create_table(:tasks)
@@ -229,29 +244,42 @@ Let's update the database to hold ````task```` entries,
 
 ### See it in the browser
 
-Let's test it out in the browser
+Let's test it out the Rails app on your computer's browser,   
     
-    # start the built in rails server
+    # --------------------------------------
+    # NOTICE !
+    # --------
+    # RUN COMMAND IN /vagrant/open_camp
+    # --------------------------------------
+    #
+    # start your local rails server
+    # 
     rails server
 
-    # go to 
-    # 
-    # http://localhost:3000/tasks
+Now go to [localhost:3000/tasks](http://localhost:3000/tasks)
 
 
 ### Building 2nd Rails MVC - from scratch
 
-Great. Now that we have fully functioning Rails MVC component, let's build another without using ````scaffold```` command. The ````scaffold```` command was a great start, but we want to help you think through how the MVC pieces fit together so you can create & code whatever you dream up.
+Great. Now that we have fully functioning Rails MVC component.  You can Create, Read, Update, and Delete (CRUD) Tasks. Next, let's build another without using the  ````rails generate scaffold````  command.  The  ````scaffold````  command was a great start, but we want to help you think through how the MVC pieces fit together so you can create & code whatever you dream up.
 
 
 ### Model
 
 We'll start with ceating a Model.  
 
+    # --------------------------------------
+    # NOTICE !
+    # --------
+    # RUN COMMAND IN /vagrant/open_camp
+    # --------------------------------------
+    #
+    # generate a model
+    # 
     rails generate model Note title:string body:text
 
-    # resulting output
-    #
+You should the following output in your terminal,  
+
     invoke  active_record
     create    db/migrate/20130408131003_create_notes.rb
     create    app/models/note.rb
@@ -259,11 +287,11 @@ We'll start with ceating a Model.
     create      test/unit/note_test.rb
     create      test/fixtures/notes.yml
 
-Notice that the ````rails generate model```` command created a migration automatically. That's because Rails assumes mangement of the database and because all models are 90% of the time mapped back to a database table. Thus, when we create a model, Rails creates the underlying database table too.  
+Notice that the  ````rails generate model````  command created a database migration automatically.  That's because Rails assumes mangement of the database and because all models are 90% of the time mapped back to a database table.  Thus, when we create a model, Rails creates the underlying database table too.  
 
-Notice that the ````rails generate model```` command also created a "test unit files". Rails assumes that you want to use automated testing as you write code. We'll cover testing later. So just leave those files for now.  
+Notice that the  ````rails generate model````  command also created "test unit files". Rails assumes that you want to use automated testing as you write code.  We'll cover testing later.  Just leave those files for now.  
 
-Open the ````open_camp/app/models/note.rb```` file just to see what's in there,   
+Open the  ````open_camp/app/models/note.rb````  file just to see what's in there,   
 
     # open_camp/app/models/note.rb
 
@@ -274,12 +302,20 @@ Open the ````open_camp/app/models/note.rb```` file just to see what's in there,
 
 ### Controller
 
-Next, let's create the controller, 
+Next, create the controller, 
 
+    # --------------------------------------
+    # NOTICE !
+    # --------
+    # RUN COMMAND IN /vagrant/open_camp
+    # --------------------------------------
+    #
+    # generate a controller
+    # 
     rails generate controller Note index show new edit create update delete
 
-    # resulting output
-    #
+You should the following output in your terminal,  
+
     create  app/controllers/note_controller.rb
      route  get "note/delete"
      route  get "note/update"
