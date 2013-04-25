@@ -4,8 +4,7 @@ Before Each Session
 - Catch up on the content from any previous sessions you may have missed
 - Join the [RailsMN Google Group!](https://groups.google.com/forum/?fromgroups#!forum/railsmn)
 - Follow [@RailsMN on Twitter!](http://www.twitter.com/railsmn)
-
-[Here is a link to some handy commands for the console, Ruby and Rails](http://pragtob.github.io/rails-beginner-cheatsheet/)
+- [Here is a link to some handy commands for the console, Ruby and Rails](http://pragtob.github.io/rails-beginner-cheatsheet/)
 
 ## Goal
 
