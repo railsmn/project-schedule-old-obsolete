@@ -101,21 +101,7 @@ The rest of this evening will be comprised of:
   rake db:migrate
   ```
 
-2. Configure Devise
-
-  Explanation
-
-  ```
-  Code
-  ```
-
-  Explanation
-
-  ```
-  Code
-  ```
-
-3. Add Devise to Controllers
+2. Add Devise to Controllers
 
   Now with Devise installed we can make it so a User needs to be authenticated before creating a task! To do so, open up ````app/controllers/tasks_controller.rb```` and add the following filter underneath the class declaration
 
@@ -158,18 +144,41 @@ The rest of this evening will be comprised of:
 
 2. Update controllers
 
-  Explanation
+  Now that we've set the ground work, we need to tell our controller to save deal with tasks in context of our currently logged in user.
 
-  ```
-  Code
-  ```
+  1. Update the index method     
 
-  Explanation
+      Our first change is to make sure our users are only seeing the tasks that they own. Open up ````app/controllers/tasks_controller.rb``` and change this line within the 'index' method:
 
-  ```
-  Code
-  ```  
+      ```
+      @tasks = Task.all
+      ```
 
+      to be
+
+      ```
+      @tasks = current_user.tasks
+      ```
+
+      ````current_user.tasks```` is pulling the currently logged in user from Devise and using our model methods that we created in the prior step to make sure we only pull up the relevant tasks.
+
+  2. Update the create method
+
+      Next we need to make sure that when we save tasks, we also save the relationship to the logged in user. In the 'create' method, underneath the following line:
+
+      ```
+      @task = Task.new(params[:task])
+      ```
+
+      add this
+
+      ```
+      @task.user = current_user
+      ```
+
+  3. (Optional) update other methods
+
+      Those are the two methods that we need to change for functionality sake. However, if we don't modify the other methods it may be possible to change other users tasks by changing our URLs. Feel free to update the other methods using Devise's ````current_user````
 
 #### 3. User testing
 
