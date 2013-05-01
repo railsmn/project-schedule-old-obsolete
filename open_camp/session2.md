@@ -79,16 +79,26 @@ The rest of this evening will be comprised of:
 #### 1. User authentication
 1. Install the Devise Gem
 
-  Explanation (we should probably explain the concept of gems and link to some resources, follow suit with any other new concepts below)
+  Explanation (we should probably explain the concept of gems and link to some resources, follow suit with any other new concepts below). For more information on how to use Devise outside of what we are doing today, [visit the Devise GitHub page](https://github.com/plataformatec/devise)
+
+  To start, add the following line to your Gemfile outside of any 'group' blocks to bring Devise into Rails
+  
+  ```
+  gem 'devise'
+  ```
+
+  Once you add Devise to your Gemfile, you need to use Bundler to pull in the code to your application, in your terminal run:
 
   ```
-  Code
+  bundle install
   ```
 
-  Explanation
+  Now we need to run some code that comes with Devise to add the appropriate configurations (config/initializers/devise.rb) and your new User model (app/models/user.rb), and the necessary migrations. To do that, run the following in your terminal:
 
   ```
-  Code
+  rails generate devise:install
+  rails generate devise user
+  rake db:migrate
   ```
 
 2. Configure Devise
@@ -107,17 +117,16 @@ The rest of this evening will be comprised of:
 
 3. Add Devise to Controllers
 
-  Explanation
+  Now with Devise installed we can make it so a User needs to be authenticated before creating a task! To do so, open up ````app/controllers/tasks_controller.rb```` and add the following filter underneath the class declaration
 
   ```
-  Code
+  before_filter :authenticate_user!
   ```
 
-  Explanation
+  This is our first experience with 'filters' in Rails. Filters are methods that are run before or after our controller methods. In this case, we are calling the Devise ````'authenticate_user!'```` method before we can create, edit or destroy tasks. 
 
-  ```
-  Code
-  ```  
+  To play with this, you can now visit http://localhost:3000/tasks and you will see a login screen. You can now sign up and then be redirected to the tasks index.
+  
 
 #### 2. Adding tasks to users
 1. Update models
