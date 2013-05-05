@@ -1,7 +1,28 @@
 Session 2 - May 13th
 =====
 
-**IMPORTANT REMINDER:** If you have not yet done so, please be sure to [have installed the Rails environment virtual machine](https://github.com/railsmn/railsmn-dev-box) and have [completed the activities outlined in Session 1](https://github.com/railsmn/schedule/blob/master/open_camp/session1.md)
+**IMPORTANT REMINDER**  
+If you have not setup the [railsmn-dev-box](https://github.com/railsmn/railsmn-dev-box), please follow setup instructions on the [README page](https://github.com/railsmn/railsmn-dev-box). If you did not finish [Session 1 activities](https://github.com/railsmn/schedule/blob/master/open_camp/session1.md), you can pull down pull down the code we wrote during session 1. Here's how to do this via git commands,  
+
+    # go to the folder where you've installed the railsmn-dev-box
+    cd railsmn-dev-box
+
+    # run this command to apply changes we made to the vagrant VM
+    vagrant provision
+
+    # ssh into the vagrant virtual machine
+    vagrant ssh 
+
+    # make sure to change directories to the VAGRANT folder
+    cd /vagrant
+
+    # clone the open_camp project
+    git clone git://github.com/railsmn/open_camp.git
+    
+    # checkout the session1 changes
+    git checkout session1_post
+
+
 
 As always, please remember to be vocal during these events and feel more than welcome to ask questions. There will be many experienced Ruby on Rails developers glad to help!
 
@@ -53,7 +74,7 @@ We made some changes to our Virtual Machine image and fixed some glitches that w
 4. Now to connect back into our virtual machine we may SSH again as expected from last session. Note you no longer need to change to the /vagrant directory, as we set that to be the default behavior.
 
   ```
-  vagrant ssh
+    vagrant ssh
   ```  
 
 #### 4. Session 2 Overview
