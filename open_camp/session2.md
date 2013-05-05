@@ -7,21 +7,14 @@ If you have not setup the [railsmn-dev-box](https://github.com/railsmn/railsmn-d
     # go to the folder where you've installed the railsmn-dev-box
     cd railsmn-dev-box
 
-    # run this command to apply changes we made to the vagrant VM
-    vagrant provision
-
     # ssh into the vagrant virtual machine
     vagrant ssh 
-
-    # make sure to change directories to the VAGRANT folder
-    cd /vagrant
 
     # clone the open_camp project
     git clone git://github.com/railsmn/open_camp.git
     
     # checkout the session1 changes
     git checkout session1_post
-
 
 
 As always, please remember to be vocal during these events and feel more than welcome to ask questions. There will be many experienced Ruby on Rails developers glad to help!
