@@ -133,7 +133,7 @@ The rest of this evening will be comprised of:
 
   Now that we require authentication to create or change tasks, it would be nice if we could directly associate tasks with a specific user, instead of having all tasks belong to all users. The association between users and tasks is easy to create in Rails!
 
-  The first step of associating things in Rails is to let the database know about the unique ID that will relate the tasks with their users. The convention in Rails is to follow the <model>_id naming pattern. To easily update the database, we can run the following migration.
+  The first step of associating things in Rails is to let the database know about the unique ID that will relate the tasks with their users. The convention in Rails is to follow the \<model\>_id naming pattern. To easily update the database, we can run the following migration.
 
   ```
   rails generate migration AddUserToTasks user_id:integer
@@ -196,22 +196,162 @@ The rest of this evening will be comprised of:
 
 #### 3. User testing
 
-  1. Do something
+After creating the User model and associating a User with many Tasks, we want to write tests to verfiy that this code works. 
 
-  Explanation
+Why write tests? Writing tests is beneficial because,  
+(1) writing tests makes us prove to ourselves that our code actually works,   
+(2) writing tests helps you see where/how future code you write breaks other code.  
 
-  ```
-  Code
-  ```
+Let's create some tests!
 
-  2. Do something
+We'll use a popular Ruby testing framework called, Rspec. Here's how to configure it with Rails.
 
-  Explanation
 
-  ```
-  Code
-  ```
+###### Configure Rspec with Rails
 
+  1. Add the following line to the Gemfile.
+
+       
+    ```
+    gem 'rspec-rails'
+    gem 'shoulda'
+    ```
+
+    ````shoulda```` is a gem to help us test various of code within rails. We'll see how we use it later.
+  
+  2. Run bundle install, 
+
+    ```
+    bundle install
+    ```
+
+  3. Run this command to create the rspec files
+      
+      ```
+      rails generate rspec:install
+      ```  
+      
+      This created the ````open_camp/spec```` folder, and added a file, ````spec_helper.rb````, within that folder. The ````spec_helper.rb```` file contains RSpec configuration parameters that tell Rspec how to test our ra      ils app.
+      
+
+###### Create a Model test
+
+  1. Open the ````spec_helper.rb```` file. Notice 2 things,
+
+    \#1. Rspec sets the Rails environment to "test". Therefore, we are using the test database, and __not__ the development database (rememeber seeing these in the database.yml file?). __See line 1__, ````ENV["RAILS_ENV"] ||= 'test'````
+    
+    \#2. Each test file must be end with , ````spec.rb````. For example, ````task_spec.rb````. __See Line 7__, ````Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }````.
+
+
+  2. Create a folder and a test file,
+  
+    ```
+  mkdir spec/models 
+  touch spec/models/task_spec.rb
+    ```
+
+  3. Open ````task_spec.rb```` (the file you just created), and paste this in, 
+
+    ```
+    require 'spec_helper'
+  
+    describe Task do 
+    
+      it 'true equals true' do
+        true.should == true
+      end
+      
+      it 'true not equal false' do 
+        true.should_not == false
+      end
+      
+      it '2nd simple test' do 
+        (2 + 2).should == 4
+      end
+      
+    end
+    ```
+    
+    What does this do?
+    
+    ````describe```` is a Rspec keyword that tells the Rspec testing framework that we are testing the ````Task```` Ruby class.
+    
+    ````it```` is another Rspec keyword that tells Rspec to evaluate code within the ````it```` block as a single test.
+    
+    ````should```` is another Rspec keyword that tells Rspec to compare the stuff on the left side with the stuff on the right side, and will return true or false. For example, the 1 should be equal to 1, ````1.should == 1````, which will return ````true````.
+    
+    ````should_not```` is the same as ```should```,   except the opposite. For example, ````1.should_not == 2````, which will return ````true````.
+  
+ 4. Let's try running it, 
+ 
+    ```
+  rake spec
+    ```
+
+ 5. You should see this ouput in your console/terminal,  
+  
+    ```
+  # OUTPUT FROM TERMINAL
+  # --------------------
+  vagrant@rails-dev-box:/vagrant/open_camp$ rake spec
+  NOTICE:  CREATE TABLE will create implicit sequence "notes_id_seq" for serial column "notes.id"
+  NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "notes_pkey" for table "notes"
+  NOTICE:  CREATE TABLE will create implicit sequence "tasks_id_seq" for serial column "tasks.id"
+  NOTICE:  CREATE TABLE / PRIMARY KEY will create implicit index "tasks_pkey" for table "tasks"
+  /home/vagrant/.rvm/rubies/ruby-2.0.0-p0/bin/ruby -S rspec ./spec/models/task_spec.rb
+  .
+  Finished in 0.01595 seconds
+  3 examples, 0 failures
+  Randomized with seed 38136 # NOTE - the seed is randomly generated to order tests executi
+  on
+      ```
+   
+###### Create a real Model test
+
+Obvisouly we want to test real code features rather than just true/false and addition. Let's test the Relationship we defined between User and Task, the user having many tasks. This is where the ```shoulda``` gem will help us out.
+
+  1. We already created a test file for the Task model. Create a test file for the User model, 
+  
+    ```
+  touch spec/models/user_spec.rb
+    ```
+
+  2. Open the ```user_spec.rb``` file, and add this code.
+  
+    ```
+    require 'spec_helper'
+    
+    describe User do 
+      it { should have_many :tasks }
+    end
+
+    ```
+    
+    ```it { } ``` and ```do … end ``` are approximately the same.
+    
+    ```should``` is a comparision method from the ```shoulda``` gem. Using ```should``` tells Rspec that whatever follows after ```should``` is expected to be true.
+    
+    The ```have_many``` is another ```shoulda``` keyword that inspects the User model and returns true if the User has the relationship. It will return ```true``` since the User model has_many tasks.
+    
+      ```
+    # user.rb
+    
+    class User < ActiveRecord::Base
+    
+      has_many :tasks
+    end  
+      ```
+    
+
+###### Add user.rb tests for unique fields
+###### Add validation tests for tasks/notes
+
+###### Create controller test
+###### Explain why devise authentication helper
+###### Write expect change on a post action
+
+
+<br>
 
 ## Lightning Talks (30 minutes)
 **Test Driven Development:** It is cool and important. We'll talk about why.
