@@ -310,48 +310,74 @@ Next, create the controller,
     # RUN COMMAND IN /vagrant/open_camp
     # --------------------------------------
     #
-    # generate a controller
+    # generate a controller with actions
     # 
-    rails generate controller Note index show new edit create update delete
+    rails generate controller Notes index show new edit create update delete
 
 You should the following output in your terminal,  
 
-    create  app/controllers/note_controller.rb
-     route  get "note/delete"
-     route  get "note/update"
-     route  get "note/create"
-     route  get "note/edit"
-     route  get "note/new"
-     route  get "note/show"
-     route  get "note/index"
+    create  app/controllers/notes_controller.rb
+     route  get "notes/delete"
+     route  get "notes/update"
+     route  get "notes/create"
+     route  get "notes/edit"
+     route  get "notes/new"
+     route  get "notes/show"
+     route  get "notes/index"
     invoke  erb
-    create    app/views/note
-    create    app/views/note/index.html.erb
-    create    app/views/note/show.html.erb
-    create    app/views/note/new.html.erb
-    create    app/views/note/edit.html.erb
-    create    app/views/note/create.html.erb
-    create    app/views/note/update.html.erb
-    create    app/views/note/delete.html.erb
+    create    app/views/notes
+    create    app/views/notes/index.html.erb
+    create    app/views/notes/show.html.erb
+    create    app/views/notes/new.html.erb
+    create    app/views/notes/edit.html.erb
+    create    app/views/notes/create.html.erb
+    create    app/views/notes/update.html.erb
+    create    app/views/notes/delete.html.erb
     invoke  test_unit
-    create    test/functional/note_controller_test.rb
+    create    test/functional/notes_controller_test.rb
     invoke  helper
-    create    app/helpers/note_helper.rb
+    create    app/helpers/notes_helper.rb
     invoke    test_unit
-    create      test/unit/helpers/note_helper_test.rb
+    create      test/unit/helpers/notes_helper_test.rb
     invoke  assets
     invoke    coffee
-    create      app/assets/javascripts/note.js.coffee
+    create      app/assets/javascripts/notes.js.coffee
     invoke    scss
-    create      app/assets/stylesheets/note.css.scss
+    create      app/assets/stylesheets/notes.css.scss
 
 
-This creates the basic structure for the controller, but we'll need to go back and customize the details how it functions.
+This creates the controller and associated HTML files, but we'll need to go back and customize the details how it functions.
 
-### Controller - change index action
-- routes 
-- controller
-- views
+## Brief Introduction to REST    
+Rails has adopted the REST HTTP protocol to describe how a Rails application interacts with database entries. REST stands for __Re__presention __S__tate__ __T__ransform. REST is a systematic way telling a web applicaiton how/when to create, read, update, delete objects. HTTP stands for __H__yper __T__ext __T__ransfer __P__rotocol, and it's how your internet browswer communicates with websites/webservers. Don't worry about HTTP, REST
+
+
+
+
+### Index action  
+
+#### Routes
+
+Open the  ````config/routes.rb````  file. __We will change this file, but right now it should look like this__, 
+    
+    OpenCamp::Application.routes.draw do
+      get "notes/index"
+      get "notes/show"
+      get "notes/new"    
+      get "notes/edit"
+      get "notes/create"
+      get "notes/update"
+      get "notes/delete"
+
+      resources :tasks
+
+      # commented out code
+    end
+
+#### Controller
+#### View
+
+
 
 ### Controller - change new action
 - routes 
