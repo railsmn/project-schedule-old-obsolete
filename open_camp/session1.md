@@ -438,7 +438,7 @@ Now open ````open_camp/app/views/notes/index.html.erb````, and copy in the HTML 
 
 
 
-### Show action - [Git Diff 1](https://github.com/railsmn/open_camp/commit/6f40de60ab32f5104412373e00a28fcd70502beb) - [Git Diff 2](https://github.com/railsmn/open_camp/commit/38a8f527619aca576fd921893a58c263ae6bbefd)
+### Show action - [Git Diff 1](https://github.com/railsmn/open_camp/commit/6f40de60ab32f5104412373e00a28fcd70502beb) - [Git Diff 2](https://github.com/railsmn/open_camp/commit/38a8f527619aca576fd921893a58c263ae6bbefd) - [Git Diff 3](https://github.com/railsmn/open_camp/commit/7fbab67c5fbdf5d42c84069106eab940fa08faba)  
 Now we want to look craete a URL and HTML page to view a single ```Note```.
 
 #### Controller
@@ -448,7 +448,7 @@ The ````show```` URL will look like this,
 
 The RESTful URL structure that Rails uses puts the ````1```` into a HTTP param called ````id````. We can access this parameter by calling this in the controller, ````params[:id]````. We can use this to query for a Note where the ````id```` is equal the integer.
 
-    # notes_controllerb
+    # notes_controller.rb
 
     class NotesController < ApplicationController
 
@@ -482,39 +482,160 @@ The RESTful URL structure that Rails uses puts the ````1```` into a HTTP param c
 
 Note that we added the ````link_to```` ruby method. This creates a __dynamic__ link from the __show__ HTML page to the __index__ page.
 
-[Let's add a link on the __index__ page to each show page](), 
+[Let's add a link on the __index__ page to each show page](https://github.com/railsmn/open_camp/commit/38a8f527619aca576fd921893a58c263ae6bbefd), 
 
     <% link_to 'Show', note_path(note) %>
 
 
-### Controller - change create action
-- controller
-- views
 
-### Test it - create a Note
+### New action - [Git Diff 1](https://github.com/railsmn/open_camp/commit/81b069d3da0f316a755cdc3b0d8202a9f5534cc6) - [Git Diff 2](https://github.com/railsmn/open_camp/commit/bec9090124622c0348e1fb2608970cf580881fb3) - [Git Diff 3](https://github.com/railsmn/open_camp/commit/f82cb95d749da7362e420e49908ea5d25f2c8833)  
+Now let's make a way for us to create notes, 
 
-### Controller - change show action
-- controller
-- views
+#### Controller
+We'll add 2 methods,  ````new````  and  ````create````. 
 
-### Test it - show a Note
+    # notes_controller.rb
 
-### Controller - change update action
-- routes 
-- controller
-- views
+    class NotesController < ApplicationController
 
-### Test it - edit a Note
-- controller
-- views
+      def index
+        @notes = Note.all
+      end
 
-### Controller - change destroy action
-- controller
-- views  
+      def show
+        @note = Note.find(params[:id])
+      end
+
+      def new
+        @note = Note.new
+      end
+
+      def create 
+        @note = Note.new(params[:note])
+
+        if @note.save
+          redirect_to @note, notice: 'Note was successfully created.'
+        else
+          render action: "new"
+        end
+      end
+
+      # ... other controller actions ...
+
+    end    
 
 
-=======
-## Rails/Web Development topics presentation (30 minutes)
+#### Views
+We'll create a form, and place it in something called a ````partial````. Partials are small reusable bits of HTML of code. It will make more sense as we use it.
+
+new.html.erb
+
+    <h1>New note</h1>
+
+    <%= render 'form' %>
+
+    <%= link_to 'Back', notes_path %>
+    
+_form.html.erb
+
+    <%= form_for(@note) do |f| %>
+      <% if @note.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@note.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+          <ul>
+          <% @note.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :title %><br />
+        <%= f.text_field :title %>
+      </div>
+      <div class="field">
+        <%= f.label :body %><br />
+        <%= f.text_field :body %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+
+
+### Update action - [Git Diff](https://github.com/railsmn/open_camp/commit/fbe6948aa16558bddeb3a41ee9c5be2ae5e0561a)
+Great. We can create a note, but now we want edit the ````note````.
+
+#### Controller
+We'll a get the attributes from the HTML form, and save them, 
+
+    # notes_controller.rb
+
+    class NotesController < ApplicationController
+
+      # ... other controller actions ...
+
+      def update
+        @note = Note.new(params[:note])
+
+        if @note.update_attributes(params[:note])
+          redirect_to @note, notice: 'Note was successfully updated.'
+        else
+          render action: "edit"
+        end
+      end
+
+      # ... other controller actions ...
+
+    end    
+
+#### View
+
+edit.htm.erb
+
+    <h1>Editing note</h1>
+
+    <%= render 'form' %>
+
+    <%= link_to 'Show', @note %> |
+    <%= link_to 'Back', notes_path %>
+
+index.html.erb - added link to edit a note. 
+
+    <% link_to 'Edit', edit_note_path(note) %>
+
+show.html.erb - added link to edit a note. 
+    
+    <% link_to 'Edit', edit_note_path(note) %>    
+
+
+### Delete action - [Git Diff](https://github.com/railsmn/open_camp/commit/7d9f6bc76314f9d85bd74a704536764402509e02)
+#### Controller
+We'll find the Note object, and destroy it,
+
+    # notes_controller.rb
+
+    class NotesController < ApplicationController
+
+      # ... other controller actions ...
+
+      def destroy
+        @note = Note.new(params[:note])
+        @note.destroy
+
+        redirect_to notes_url
+      end
+
+    end    
+
+#### View
+There are no views since we redirect to the ````index``` page from the cotnroller action.
+
+
+
+
 
 [Link to presentation slides](http://railsmn.github.io/convention-mvc-rest.html)
 
