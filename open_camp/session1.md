@@ -349,51 +349,151 @@ You should the following output in your terminal,
 This creates the controller and associated HTML files, but we'll need to go back and customize the details how it functions.
 
 ## Brief Introduction to REST    
-Rails has adopted the REST HTTP protocol to describe how a Rails application interacts with database entries. REST stands for __Re__presention __S__tate__ __T__ransform. REST is a systematic way telling a web applicaiton how/when to create, read, update, delete objects. HTTP stands for __H__yper __T__ext __T__ransfer __P__rotocol, and it's how your internet browswer communicates with websites/webservers. Don't worry about HTTP, REST
+Rails has adopted the REST HTTP protocol to describe how a Rails application interacts with database entries. REST stands for __Re__presention __S__tate__ __T__ransform. REST is a systematic way telling web applicaitons how/when to create, read, update, delete objects. HTTP stands for __H__yper __T__ext __T__ransfer __P__rotocol, and it's how your internet browswer communicates with wep applicaiton. Don't worry about HTTP, we'll focus on REST.
 
+There are 2 ways to make a route (URL endpoints) "RESTful", implicit and explicit.
 
+The implicit way is to use, ````resources :tasks````. IE, 
+  
+    # EXAMPLE - do not use 
+    # routes.rb
 
-
-### Index action  
-
-#### Routes
-
-Open the  ````config/routes.rb````  file. __We will change this file, but right now it should look like this__, 
-    
-    OpenCamp::Application.routes.draw do
-      get "notes/index"
-      get "notes/show"
-      get "notes/new"    
-      get "notes/edit"
-      get "notes/create"
-      get "notes/update"
-      get "notes/delete"
-
+    OpenCamp::Application.routes.draw do 
       resources :tasks
-
-      # commented out code
     end
 
+Or the explicit way, 
+
+    # EXAMPLE - do not use 
+    # routes.rb
+
+    OpenCamp::Application.routes.draw do 
+      get    'tasks/index'     => 'tasks#index'
+      get    'tasks/:id'       => 'tasks#show'
+      get    'tasks/:id/edit'  => 'tasks#edit'
+      get    'tasks/new'       => 'tasks#new'
+      post   'tasks'           => 'tasks#create'
+      put    'tasks/:id'       => 'tasks#update'
+      delete 'tasks/:id'       => 'tasks#delete'
+    end
+
+
+### routes.rb changes - [Git Diff](https://github.com/railsmn/open_camp/commit/0a8b1967734d780ffa1f069b4860f2be014bcb22)  
+All that said, let's use the 1 line ````resources```` command to make the ````notes```` URL RESTful.
+
+    # ---------
+    # COPY & PASTE this into routes.rb
+    # ---------
+
+    # routes.rb
+
+    OpenCamp::Application.routes.draw do
+      resources :notes
+      resources :tasks
+    end
+
+
+### Index action - [Git Diff](https://github.com/railsmn/open_camp/commit/a7764e84e10377749495cc327cb6b473999475e8)    
+Let's create a URL that shows a list of all the ````notes````.
+
 #### Controller
+Pull all ````notes```` from the database, and store them in a Ruby instance variable, ````@notes````. This will be passed to the HTML view file.
+
+    # notes_controllerb
+
+    class NotesController < ApplicationController
+
+      def index
+        @notes = Note.all
+      end
+
+      # ... other controller actions ...
+
+    end
+
 #### View
+Now open ````open_camp/app/views/notes/index.html.erb````, and copy in the HTML table to show a list of notes.
+  
+    <h1>Listing notes</h1>
+
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Body</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+    <% @notes.each do |note| %>
+      <tr>
+        <td><%= note.title %></td>
+        <td><%= note.body %></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    <% end %>
+    </table>
 
 
 
-### Controller - change new action
-- routes 
-- controller
-- views
+### Show action - [Git Diff 1](https://github.com/railsmn/open_camp/commit/6f40de60ab32f5104412373e00a28fcd70502beb) - [Git Diff 2](https://github.com/railsmn/open_camp/commit/38a8f527619aca576fd921893a58c263ae6bbefd)
+Now we want to look craete a URL and HTML page to view a single ```Note```.
+
+#### Controller
+The ````show```` URL will look like this,
+
+    www.example.com/notes/1
+
+The RESTful URL structure that Rails uses puts the ````1```` into a HTTP param called ````id````. We can access this parameter by calling this in the controller, ````params[:id]````. We can use this to query for a Note where the ````id```` is equal the integer.
+
+    # notes_controllerb
+
+    class NotesController < ApplicationController
+
+      def index
+        @notes = Note.all
+      end
+
+      def show
+        @note = Note.find(params[:id])
+      end
+
+      # ... other controller actions ...
+
+    end
+
+
+#### View 
+    <p id="notice"><%= notice %></p>
+
+    <p>
+      <b>Title:</b>
+      <%= @note.title %>
+    </p>
+
+    <p>
+      <b>Body:</b>
+      <%= @note.body %>
+    </p>
+
+    <%= link_to 'Back', notes_path %>
+
+Note that we added the ````link_to```` ruby method. This creates a __dynamic__ link from the __show__ HTML page to the __index__ page.
+
+[Let's add a link on the __index__ page to each show page](), 
+
+    <% link_to 'Show', note_path(note) %>
 
 
 ### Controller - change create action
-- routes 
 - controller
 - views
 
 ### Test it - create a Note
 
 ### Controller - change show action
-- routes 
 - controller
 - views
 
@@ -405,12 +505,10 @@ Open the  ````config/routes.rb````  file. __We will change this file, but right 
 - views
 
 ### Test it - edit a Note
-- routes 
 - controller
 - views
 
 ### Controller - change destroy action
-- routes 
 - controller
 - views  
 
