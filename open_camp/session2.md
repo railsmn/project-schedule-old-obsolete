@@ -1,24 +1,6 @@
 Session 2 - May 13th
 =====
 
-**IMPORTANT REMINDER**  
-If you have not setup the [railsmn-dev-box](https://github.com/railsmn/railsmn-dev-box), please follow setup instructions on the [README page](https://github.com/railsmn/railsmn-dev-box). If you did not finish [Session 1 activities](https://github.com/railsmn/schedule/blob/master/open_camp/session1.md), you can pull down pull down the code we wrote during session 1. Here's how to do this via git commands,  
-
-    # go to the folder where you've installed the railsmn-dev-box
-    cd railsmn-dev-box
-
-    # ssh into the vagrant virtual machine
-    vagrant ssh 
-
-    # clone the open_camp project
-    git clone git://github.com/railsmn/open_camp.git
-    
-    # checkout the session1 changes
-    git checkout session1_post
-
-
-As always, please remember to be vocal during these events and feel more than welcome to ask questions. There will be many experienced Ruby on Rails developers glad to help!
-
 ## Introduction (30 minutes)
 #### 1. Welcome and logistics
 Enjoy pizza and beer and be sure to introduce yourself to other people learning Ruby on Rails!
