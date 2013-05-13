@@ -22,10 +22,12 @@ Last month we had our first event at CoCo! The goal of the event was to orient o
   - (Potentially) Created a note object following the scaffold pattern
 - Discussed the importance of MVC, REST and databases within Ruby on Rails
 
-[Here is a link to the codebase to be expected at the end of Session 1](https://github.com/railsmn/open_camp_session_1/tree/master/finish). If you haven't gotten yet to that point on your own, pull a mentor aside to figure out how to pull down the codebase we will be starting with today.
+**If you were not here last time:** [here is a link to the codebase to be expected at the end of Session 1](https://github.com/railsmn/open_camp_session_1/tree/master/finish). If you haven't gotten yet to that point on your own, pull a mentor aside to figure out how to pull down the codebase we will be starting with today.
 
 #### 3. Update your Virtual Machine!
-We made some changes to our Virtual Machine image and fixed some glitches that will make your development experience smoother going forward (e.g. Ruby 2.0, default ssh directory, Rails installed (woopsy)). To make sure you are up to date with the correct environment, follow these steps:
+If you already had an environment created from last time, we have made some changes to our Virtual Machine image and fixed some glitches that will make your development experience smoother going forward (e.g. Ruby 2.0, default ssh directory, Rails installed (woopsy)). To make sure you are up to date with the correct environment, follow these steps:
+
+**Note, if you installed the VM for the first time today, you can skip these steps**
 
 1. Open a terminal and navigate to the directory where your existing virtual machine is stored, probably in a railsmn-dev-box folder. The below example is for me, your directory location may be different.
   
@@ -290,7 +292,7 @@ We'll use a popular Ruby testing framework called, Rspec. Here's how to configur
    
 ###### Create a real Model test
 
-Obvisouly we want to test real code features rather than just true/false and addition. Let's test the Relationship we defined between User and Task, the user having many tasks. This is where the ```shoulda``` gem will help us out.
+Obviously we want to test real code features rather than just true/false and addition. Lets test the Relationship we defined between Users and Tasks, the user having many tasks. This is where the ```shoulda``` gem will help us out.
 
   1. We already created a test file for the Task model. Create a test file for the User model, 
   
