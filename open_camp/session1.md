@@ -1,4 +1,3 @@
-
 # Welcome!  
 
 ## Purpose of building OpenCamp / Intro (30 minutes) 
@@ -578,7 +577,7 @@ We'll a get the attributes from the HTML form, and save them,
       # ... other controller actions ...
 
       def update
-        @note = Note.new(params[:note])
+        @note = Note.find(params[:id])
 
         if @note.update_attributes(params[:note])
           redirect_to @note, notice: 'Note was successfully updated.'
@@ -622,7 +621,7 @@ We'll find the Note object, and destroy it,
       # ... other controller actions ...
 
       def destroy
-        @note = Note.new(params[:note])
+        @note = Note.find(params[:id])
         @note.destroy
 
         redirect_to notes_url
