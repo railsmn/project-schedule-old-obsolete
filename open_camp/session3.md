@@ -32,6 +32,23 @@ TODO - create Session 3 overview.
 ## Hack Time (90 minutes)
 
 #### 1. Integrate Twitter Bootstrap
+[__Twitter Bootstrap__](http://twitter.github.io/bootstrap/) is a frontend styling framework created to make it easier to code up sleek and smooth UIs. It's gotten a lot of attention in the last year because it provides [a responsive layout](http://twitter.github.io/bootstrap/scaffolding.html), [common HTML elements](http://twitter.github.io/bootstrap/base-css.html), and [nifty design components](http://twitter.github.io/bootstrap/components.html) through CSS classes.
+
+We'll use Bootstrap to create the basic OpenCamp UI. In this session, we'll focus on creating: 
+- content section
+- header
+- footer
+- flash message section
+
+Step 1 - Install the gem  
+Step 2 - Require the bootstrap javascript  
+Step 3 - Import the bootstrap css  
+Step 4 - Change the default layout  
+Step 5 - Create header  
+Step 6 - Create footer  
+Step 7 - Create flash message  
+
+
 #### 2. Form Validation
 #### 3. Setup Email System
 
