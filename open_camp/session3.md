@@ -142,7 +142,7 @@ To start, copy and paste the following into application.html.erb (app/views/layo
 
 This adds 3 "render partial" commands. We'll also create the partials in the same step.
 
-``` erb
+``` HTML+ERB
 <!doctype html>
 <html>
   
@@ -200,7 +200,7 @@ We haven't created any of those layouts yet, so let's do that.
 
 Add a header partial file, app/views/layouts/_header.html.erb, and add this content.  
 
-``` erb
+``` HTML+ERB
 <%= link_to 'OpenCamp', '/tasks', class: 'brand' %>
 <% if user_signed_in? %>
   <ul class='nav'>
@@ -237,7 +237,7 @@ Add a header partial file, app/views/layouts/_header.html.erb, and add this cont
 
 Add a footer partial file, ```app/views/layouts/_footer.html.erb```, and add this content.  
 
-``` erb
+``` HTML+ERB
 <b>OpenCamp</b> | 
 <%= link_to 'About', 'https://github.com/railsmn/open_camp' %>
 ```
@@ -245,7 +245,7 @@ Add a footer partial file, ```app/views/layouts/_footer.html.erb```, and add thi
 
 Add messages partial file, ```app/views/layouts/_messages.html.erb```, and add this content.  
 
-``` erb
+``` HTML+ERB
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
     <div class="alert alert-<%= name == :notice ? 'success' : 'error' %>">
@@ -266,7 +266,7 @@ So we just created a partial to handle rendering flash messages, and we render i
 2. ```app/views/tasks/show.html.erb```
 
 In both files, delete this line,  
-``` erb
+``` HTML+ERB
 <p id="notice"><%= notice %></p>
 ```
 
@@ -353,7 +353,7 @@ We use a partial to handle the new/edit forms for manipulating tasks, so we'll n
 
 Now we can add due dates to our tasks! Although we can't see them if we click 'show' in our index for a task. Open up ```app/views/tasks/show.html.erb``` and add this below the description paragraph:
 
-``` erb
+``` HTML+ERB
 <p>
   <b>Due Date:</b>
   <%= @task.due_date %>
