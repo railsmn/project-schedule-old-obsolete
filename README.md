@@ -43,6 +43,12 @@ We hope this combination of mentorship, web development topic presentations and 
 
 ## OpenCamp series  
 
+### [Session 3 (June 10)](https://github.com/railsmn/schedule/blob/master/open_camp/session3.md)
+- Added Bootstrap for UI, headers, footers
+- Added simple validations for tasks
+- Added due dates for tasks
+- Set up transactional e-mail for our development machines
+
 ### [Session 2 (May 13)](https://github.com/railsmn/schedule/blob/master/open_camp/session2.md)
 - Update VM settings
 - Add user authentication
