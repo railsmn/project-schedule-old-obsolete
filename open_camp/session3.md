@@ -60,7 +60,7 @@ When you start the Rails server and go to [localhost:3000](http://localhost:3000
 1. Delete the app/public/index.html file.  
 2. Add this to the app/config/routes.rb, 
 
-```
+``` ruby
 root to: 'tasks#index'
 ```
 
@@ -68,9 +68,13 @@ root to: 'tasks#index'
 
 Add the following lines to your ```Gemfile``` file, and install the added gem by running,  ```bundle install```  in the terminal.
 
+```
+gem 'bootstrap-sass'
+```
+
 #####Step 2 - Require the Bootstrap JavasSript#####
 
-The  ```bootstrap-sass```  gem uses JavaScript to accomplish a portion of its styling, which we want to include in our Rails application. We'll include it in the app by adding this line to the ```application.js``` (app/assets/javascripts/application.js:) file,  
+The  ```bootstrap-sass```  gem uses JavaScript to accomplish a portion of its styling, which we want to include in our Rails application. We'll include it in the app by adding this line to the application.js ```(app/assets/javascripts/application.js:)``` file,  
 
 ```
 //= require bootstrap
@@ -266,7 +270,205 @@ In both files, delete this line,
 <p id="notice"><%= notice %></p>
 ```
 
+#### 2. Form Validation 
 
-#### 2. Form Validation
-#### 3. Setup Email System
+Up until now, a user could enter whatever they want (or nothing at all) into our new task form. It would be nice to restrict what kinds of entries we can accept for task names and descriptions, this is where we can add model validation.
 
+Let's add a simple 'presence' validator that simply checks if a task's name and description is provided when we save it. Open up ```app/models/task.rb``` and add:
+
+``` ruby
+validates :name, presence: true
+validates :description, presence: true
+```
+
+Now load your tasks page and try to enter a blank task. You should recive an error message indicating that no name or description was entered.
+
+We can also do things like enforce the length of the content in our names and descriptions by setting minimum and maximum values. In our ```task.rb``` file, change the entries we made above to read:
+
+``` ruby
+validates :name, presence: true, length: {minimum: 5, maximum: 30}
+validates :description, presence: true, length: {within: 2..160}
+```
+
+Note that these are two different ways to handle the same thing, explicitly specifying a minimum and maximum or using within and specifying a range. [Learn more about ActiveModel validators here](http://guides.rubyonrails.org/active_record_validations_callbacks.html#presence).
+
+#### 3. Task due dates
+
+Let's add the ability to associate due dates with our tasks and even add a cool looking date picker to make it easy to use.
+
+###### Step 1 - Update the database
+
+First, we need to add this new 'due_date' field to our database. In the terminal, run a Rails database migration to create this field.
+
+```
+rails generate migration AddDueDateToTasks due_date:date
+rake db:migrate
+```
+
+###### Step 2 - Update the task model
+
+In order to use our new 'due_date' field, we need to let the model know that is okay to change. In ```app/models/task.rb``` we should see a line specifying an ```attr_accessible```. Change it to look like this:
+
+``` ruby
+attr_accessible :due_date, :description, :name
+```
+
+###### Step 3 - Update our task creation view(s)
+
+Now that our model supports ```due_date``` we can use it on our task creation forms!
+
+We use a partial to handle the new/edit forms for manipulating tasks, so we'll need to add due date functionality to that. Open up ```app/views/tasks/_form.html.erb```. In that file you'll see some form fields corresponding to the name and description we've been working with, and now we want to add due_date. Make sure the file looks like this:
+
+```
+<%= form_for(@task) do |f| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :due_date %><br />
+    <%= f.text_field :due_date %>
+  </div>    
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+```
+
+Now we can add due dates to our tasks! Although we can't see them if we click 'show' in our index for a task. Open up ```app/views/tasks/show.html.erb``` and add this below the description paragraph:
+
+```
+<p>
+  <b>Due Date:</b>
+  <%= @task.due_date %>
+</p>
+```
+
+###### Step 4 - It isn't very effective. 
+
+Now we can add the dates to our tasks, but we have to enter in an explicit date format that is difficult to work with, which isn't very friendly. Let's add a date picker from jQuery (a JavaScript helper package, like Bootstrap) to improve the experience.
+
+To do so, let's add ```jquery-ui-rails``` to our Gemfile:
+
+``` ruby
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-ui-rails'
+end
+``` 
+
+Just like earlier, we need to add the jQuery UI datepicker to both our ```application.js``` and ```application.css``` files. Open up ```/app/assets/javascripts/application.js``` and modify it to look like this:
+
+```
+//= require jquery
+//= require jquery_ujs
+//= require bootstrap
+//= require jquery.ui.datepicker
+//= require_tree .
+```
+
+And in ```app/assets/stylesheets/application.css```
+
+```
+*= require_self
+*= require jquery.ui.datepicker
+*= require_tree .
+```
+
+Now that our date picker is installed it is time to convert our text box into our date picker by adding some JavaScript. For now, we'll use our ```application.js``` file to do this. Open up ```app/assets/javascripts/application.js``` again and add this to the bottom:
+
+``` javascript
+$(document).ready(function () {
+  $('#task_due_date').datepicker({dateFormat: "yy-mm-dd"});
+});
+```
+
+This code will run every time a page is loaded and turn our 'task_due_date' field into a datepicker. You'll note that we specify how we want our dates to be formatted, this is to support the Rails convention of handling dates in a year, month, day format versus the DatePicker's default of month, day, year.
+
+Now when we go to our new/edit forms for tasks we can click on the 'due date' field and we should see a snazzy looking date picker.
+
+###### Step 5 - But, we can go back in time!?
+
+Now that we have date picking functionality, you may note that we can create due dates in the past. This doesn't make sense, and is a perfect case for Active Model validators that we used in the earlier steps. Let's make sure we can't create due dates in the past (but due dates should still be optional).
+
+To do so, we need to add a couple things to our ```task.rb``` file. Open up ```app/models/task.rb``` and add a couple lines:
+
+``` ruby
+validate :due_date_cannot_be_in_the_past
+```
+
+``` ruby
+def due_date_cannot_be_in_the_past
+  unless due_date.blank?      
+    if due_date < Date.today
+      errors.add(:due_date,"cannot be in the past")
+    end
+  end
+end
+```
+
+When you're done, your ```task.rb``` file should resemble:
+
+``` ruby
+class Task < ActiveRecord::Base
+  attr_accessible :due_date, :description, :name
+  belongs_to :user
+
+  validate :due_date_cannot_be_in_the_past
+  validates :name, presence: true, length: {minimum: 5, maximum: 30}
+  validates :description, presence: true, length: {within: 2..160}
+  
+
+  def due_date_cannot_be_in_the_past
+    unless due_date.blank?      
+      if due_date < Date.today
+        errors.add(:due_date,"cannot be in the past")
+      end
+    end
+  end
+end
+```
+
+Now when you enter a date in the past, you should be greeted with an error indicating that you can't do so! There are a couple of other validation errors we can work on, but we'll save those for later.
+
+#### 4. Setup Email System
+
+There are a couple things that would be nice if we could send our users e-mails for. For example, password resets or due date reminders would be ideal. To do this, we'll leverage a web server called Mailtrap.io to capture the e-mails we send so we can look at them in a test environment.
+
+###### Step 1 - Create a Mailtrap account
+
+To get started, [create an account at Mailtrap.io](http://mailtrap.io/).
+
+Once you've created your account you'll notice a page to create inbox. Create an inbox called 'opencamp' for you to use for our project. When it is created, click on the 'opencamp' inbox link and you'll see an interface where e-mails are capture for view.
+
+###### Step 2 - Add your Mailtrap information to your application
+
+On the settings page for your opencamp inbox you'll see 'SMTP credentials' on the right. Click on Ruby on Rails and you should get a popup with directions how to set it up. Copy the code they provide you. Paste that code into your ```app/config/environments/development.rb``` file
+
+You'll also need to tell ActionMailer (the Rails component responsible for handling e-mails) where the 'host' should be. In our case this is ```localhost:3000``` since that is where our server is listening on our machines. To configure this, add this line above where you pasted your Mailtrap configuration code:
+
+``` ruby
+config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+```
+
+And that's it! Now, when you send password reset requests via the sign in form, Mailtrap will show you the e-mail sent. 
+
+For production environments you could use services like [SendGrid](www.sendgrid.com) or [MailChimp's Mandrill](www.mandrill.com). Both are very easy to incorporate into Rails in a very similar way we did with Mailtrap.
