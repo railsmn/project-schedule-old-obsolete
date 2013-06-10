@@ -568,13 +568,17 @@ _form.html.erb
 Great. We can create a note, but now we want edit the ````note````.
 
 #### Controller
-We'll a get the attributes from the HTML form, and save them, 
+We'll load a note's attributes into the form, then get the attributes from the HTML form, and save them on form submission, 
 
     # notes_controller.rb
 
     class NotesController < ApplicationController
 
       # ... other controller actions ...
+
+      def edit
+        @note = Note.find(params[:id])
+      end
 
       def update
         @note = Note.find(params[:id])
