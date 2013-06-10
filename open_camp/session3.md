@@ -319,7 +319,7 @@ Now that our model supports ```due_date``` we can use it on our task creation fo
 
 We use a partial to handle the new/edit forms for manipulating tasks, so we'll need to add due date functionality to that. Open up ```app/views/tasks/_form.html.erb```. In that file you'll see some form fields corresponding to the name and description we've been working with, and now we want to add due_date. Make sure the file looks like this:
 
-``` erb
+``` HTML+ERB
 <%= form_for(@task) do |f| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
