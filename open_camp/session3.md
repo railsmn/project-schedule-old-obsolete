@@ -225,6 +225,17 @@ Add messages partial file, app/views/layouts/_messages.html.erb, and add this co
 <% end %>
 ```
 
+Step 5 - Remove ```<p id="notice"><%= notice %></p>``` instances  
+So we just created a partial to handle rendering flash messages, and we render it from the application.html.erb file (the applcation's global layout file). This was a good decision because it isolated the logic for rendering flash messages to just once place. Now we need to delete old places where flash messages previously comes through the UI. This happened in 2 places.
+
+1. app/views/notes/show.html.erb
+2. app/views/tasks/show.html.erb
+
+In both files, delete this line,  
+```
+<p id="notice"><%= notice %></p>
+```
+
 
 #### 2. Form Validation
 #### 3. Setup Email System
