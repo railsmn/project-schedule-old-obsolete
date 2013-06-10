@@ -95,7 +95,7 @@ Similar to how we included or required the Bootstrap JavaScript, we need to incl
 
 Therefore, add this file, ```app/assets/stylesheets/bootstrap_and_overrides.css.scss``` with this content:  
 
-```
+``` scss
 @import "bootstrap";
 @import "bootstrap-responsive";
 
@@ -142,7 +142,7 @@ To start, copy and paste the following into application.html.erb (app/views/layo
 
 This adds 3 "render partial" commands. We'll also create the partials in the same step.
 
-```
+``` erb
 <!doctype html>
 <html>
   
@@ -200,7 +200,7 @@ We haven't created any of those layouts yet, so let's do that.
 
 Add a header partial file, app/views/layouts/_header.html.erb, and add this content.  
 
-```
+``` erb
 <%= link_to 'OpenCamp', '/tasks', class: 'brand' %>
 <% if user_signed_in? %>
   <ul class='nav'>
@@ -237,7 +237,7 @@ Add a header partial file, app/views/layouts/_header.html.erb, and add this cont
 
 Add a footer partial file, ```app/views/layouts/_footer.html.erb```, and add this content.  
 
-```
+``` erb
 <b>OpenCamp</b> | 
 <%= link_to 'About', 'https://github.com/railsmn/open_camp' %>
 ```
@@ -245,7 +245,7 @@ Add a footer partial file, ```app/views/layouts/_footer.html.erb```, and add thi
 
 Add messages partial file, ```app/views/layouts/_messages.html.erb```, and add this content.  
 
-```
+``` erb
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
     <div class="alert alert-<%= name == :notice ? 'success' : 'error' %>">
@@ -266,7 +266,7 @@ So we just created a partial to handle rendering flash messages, and we render i
 2. ```app/views/tasks/show.html.erb```
 
 In both files, delete this line,  
-```
+``` erb
 <p id="notice"><%= notice %></p>
 ```
 
@@ -319,7 +319,7 @@ Now that our model supports ```due_date``` we can use it on our task creation fo
 
 We use a partial to handle the new/edit forms for manipulating tasks, so we'll need to add due date functionality to that. Open up ```app/views/tasks/_form.html.erb```. In that file you'll see some form fields corresponding to the name and description we've been working with, and now we want to add due_date. Make sure the file looks like this:
 
-```
+``` erb
 <%= form_for(@task) do |f| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
@@ -353,7 +353,7 @@ We use a partial to handle the new/edit forms for manipulating tasks, so we'll n
 
 Now we can add due dates to our tasks! Although we can't see them if we click 'show' in our index for a task. Open up ```app/views/tasks/show.html.erb``` and add this below the description paragraph:
 
-```
+``` erb
 <p>
   <b>Due Date:</b>
   <%= @task.due_date %>
