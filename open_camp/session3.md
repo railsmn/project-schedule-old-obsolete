@@ -375,6 +375,8 @@ group :assets do
 end
 ``` 
 
+Don't forget to re-run ```bundle``` after updating your Gemfile!
+
 Just like earlier, we need to add the jQuery UI datepicker to both our ```application.js``` and ```application.css``` files. Open up ```/app/assets/javascripts/application.js``` and modify it to look like this:
 
 ```
