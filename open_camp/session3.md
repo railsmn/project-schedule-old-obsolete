@@ -66,13 +66,13 @@ root to: 'tasks#index'
 
 #####Step 1 - Install the gem#####
 
-Add the following lines to your ```Gemfile``` file, and install the added gem by running,  ```bundle install```  in the terminal.
+Add the following lines to your ```Gemfile``` file, and install the added gem by running  ```bundle install```  in the terminal.
 
 ```
 gem 'bootstrap-sass'
 ```
 
-#####Step 2 - Require the Bootstrap JavasSript#####
+#####Step 2 - Require the Bootstrap JavasScript#####
 
 The  ```bootstrap-sass```  gem uses JavaScript to accomplish a portion of its styling, which we want to include in our Rails application. We'll include it in the app by adding this line to the application.js ```(app/assets/javascripts/application.js:)``` file,  
 
