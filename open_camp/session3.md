@@ -40,6 +40,15 @@ We'll use Bootstrap to create the basic OpenCamp UI. In this session, we'll focu
 - footer
 - flash message section
 
+Step 0 - Define the app's root path  
+When you start the Rails server and go to [localhost:3000](http://localhost:3000), you see a Ruby on Rails page. This is the default index page for Rails applications. We're going to change this.  
+1. Delete the app/public/index.html file.  
+2. Add this to the app/config/routes.rb, 
+
+```
+root to: 'tasks#index'
+```
+
 Step 1 - Install the gem  
 Add the following lines to your ```Gemfile``` file, and install the added gem by running,  ```bundle install```  in the terminal.
 
