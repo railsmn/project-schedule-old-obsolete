@@ -311,7 +311,7 @@ Next, create the controller,
     #
     # generate a controller with actions
     # 
-    rails generate controller Notes index show new edit create update delete
+    rails generate controller Notes index show new edit create update destroy
 
 You should the following output in your terminal,  
 
