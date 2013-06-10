@@ -138,7 +138,7 @@ The rest of this evening will be comprised of:
   belongs_to :user
   ```
 
-  At this point, restart your Rails server for the model changes to take effect. Now you can run commands like ````user.tasks```` to get all of the users tasks or ````task.user```` to find the owner of a task. For more information on model associations, check out [the Rails guide on Active Record associations](http://guides.rubyonrails.org/association_basics.html)
+  At this point, restart your Rails server for the model changes to take effect. Now you can use associations like ````user.tasks```` to get all of the users tasks or ````task.user```` to find the owner of a task. For more information on model associations, check out [the Rails guide on Active Record associations](http://guides.rubyonrails.org/association_basics.html)
 
 2. Update controllers
 
