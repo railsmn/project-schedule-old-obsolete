@@ -483,7 +483,7 @@ Note that we added the ````link_to```` ruby method. This creates a __dynamic__ l
 
 [Let's add a link on the __index__ page to each show page](https://github.com/railsmn/open_camp/commit/38a8f527619aca576fd921893a58c263ae6bbefd), 
 
-    <% link_to 'Show', note_path(note) %>
+    <%= link_to 'Show', note_path(note) %> 
 
 
 
@@ -607,11 +607,11 @@ edit.htm.erb
 
 index.html.erb - added link to edit a note. 
 
-    <% link_to 'Edit', edit_note_path(note) %>
+    <%= link_to 'Edit', edit_note_path(note) %>
 
 show.html.erb - added link to edit a note. 
     
-    <% link_to 'Edit', edit_note_path(note) %>    
+    <%= link_to 'Edit', edit_note_path(note) %>    
 
 
 ### Delete action - [Git Diff](https://github.com/railsmn/open_camp/commit/7d9f6bc76314f9d85bd74a704536764402509e02)
