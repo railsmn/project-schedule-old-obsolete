@@ -41,7 +41,9 @@ We hope this combination of mentorship, web development topic presentations and 
 - Organizers or mentors will present on topics relevant to Rails or web development
 - Topics will be 10 minutes each
 
-## OpenCamp series  
+## OpenCamp series 
+
+### [Session 4 (July 8)](https://github.com/railsmn/schedule/blob/master/open_camp/session4.md) 
 
 ### [Session 3 (June 10)](https://github.com/railsmn/schedule/blob/master/open_camp/session3.md)
 - Added Bootstrap for UI, headers, footers
