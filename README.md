@@ -44,6 +44,9 @@ We hope this combination of mentorship, web development topic presentations and 
 ## OpenCamp series 
 
 ### [Session 4 (July 8)](https://github.com/railsmn/schedule/blob/master/open_camp/session4.md) 
+- Add custom e-mail confirmations for task creation
+- Deploy Open Camp to Heroku
+- Talk about some development tools to aide debugging
 
 ### [Session 3 (June 10)](https://github.com/railsmn/schedule/blob/master/open_camp/session3.md)
 - Added Bootstrap for UI, headers, footers
