@@ -581,7 +581,7 @@ We'll load a note's attributes into the form, then get the attributes from the H
       def update
         @note = Note.find(params[:id])
 
-        if @note.update_attributes(params[:note])
+        if @note.update_attributes params.require(:note).permit(:title, :body)
           redirect_to @note, notice: 'Note was successfully updated.'
         else
           render action: "edit"
