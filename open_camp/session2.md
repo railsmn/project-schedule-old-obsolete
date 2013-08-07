@@ -222,9 +222,9 @@ We'll use a popular Ruby testing framework called, Rspec. Here's how to configur
 
   1. Open the ````spec_helper.rb```` file. Notice 2 things,
 
-    \#1. Rspec sets the Rails environment to "test". Therefore, we are using the test database, and __not__ the development database (rememeber seeing these in the database.yml file?). __See line 1__, ````ENV["RAILS_ENV"] ||= 'test'````
+    A. Rspec sets the Rails environment to "test". Therefore, we are using the test database, and __not__ the development database (rememeber seeing these in the database.yml file?). __See line 1__, ````ENV["RAILS_ENV"] ||= 'test'````
     
-    \#2. Each test file must be end with , ````spec.rb````. For example, ````task_spec.rb````. __See Line 7__, ````Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }````.
+    2. Each test file must be end with , ````spec.rb````. For example, ````task_spec.rb````. __See Line 7__, ````Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }````.
 
 
   2. Create a folder and a test file,
