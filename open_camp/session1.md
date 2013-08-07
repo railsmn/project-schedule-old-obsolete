@@ -295,7 +295,6 @@ Open the  ````open_camp/app/models/note.rb````  file just to see what's in there
     # open_camp/app/models/note.rb
 
     class Note < ActiveRecord::Base
-      attr_accessible :body, :title
     end
 
 Before we move on to the next part, be sure to run `rake db:migrate` to add the `notes` table to your database.
@@ -505,7 +504,7 @@ We'll add 2 methods,  ````new````  and  ````create````.
       end
 
       def create 
-        @note = Note.new(params[:note])
+        @note = Note.new params.require(:note).permit(:title, :body)
 
         if @note.save
           redirect_to @note, notice: 'Note was successfully created.'
