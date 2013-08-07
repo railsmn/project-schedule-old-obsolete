@@ -193,12 +193,14 @@ We'll use a popular Ruby testing framework called, Rspec. Here's how to configur
 
 ###### Configure Rspec with Rails
 
-  1. Add the following line to the Gemfile.
+  1. Add the following lines to the Gemfile.
 
        
     ```
-    gem 'rspec-rails'
-    gem 'shoulda'
+    group :test do   
+      gem 'rspec-rails'
+      gem 'shoulda'
+    end
     ```
 
     ````shoulda```` is a gem to help us test various of code within rails. We'll see how we use it later.
