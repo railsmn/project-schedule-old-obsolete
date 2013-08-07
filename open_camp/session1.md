@@ -312,14 +312,11 @@ Next, create the controller,
     #
     # generate a controller with actions
     # 
-    rails generate controller Notes index show new edit create update destroy
+    rails generate controller Notes index show new edit 
 
 You should the following output in your terminal,  
 
     create  app/controllers/notes_controller.rb
-     route  get "notes/delete"
-     route  get "notes/update"
-     route  get "notes/create"
      route  get "notes/edit"
      route  get "notes/new"
      route  get "notes/show"
@@ -330,9 +327,6 @@ You should the following output in your terminal,
     create    app/views/notes/show.html.erb
     create    app/views/notes/new.html.erb
     create    app/views/notes/edit.html.erb
-    create    app/views/notes/create.html.erb
-    create    app/views/notes/update.html.erb
-    create    app/views/notes/delete.html.erb
     invoke  test_unit
     create    test/functional/notes_controller_test.rb
     invoke  helper
