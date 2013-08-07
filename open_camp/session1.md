@@ -298,6 +298,7 @@ Open the  ````open_camp/app/models/note.rb````  file just to see what's in there
       attr_accessible :body, :title
     end
 
+Before we move on to the next part, be sure to run `rake db:migrate` to add the `notes` table to your database.
 
 ### Controller
 
