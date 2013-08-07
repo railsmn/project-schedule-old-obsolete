@@ -634,8 +634,9 @@ We'll find the Note object, and destroy it,
 #### View
 There are no views since we redirect to the ````index``` page from the cotnroller action.
 
+But let's add a link from `index.html` to the new delete action so we can see the delete in action:
 
-
+    <%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %>
 
 
 [Link to presentation slides](http://railsmn.github.io/convention-mvc-rest.html)
