@@ -609,7 +609,7 @@ index.html.erb - added link to edit a note.
 
 show.html.erb - added link to edit a note. 
     
-    <%= link_to 'Edit', edit_note_path(note) %>    
+    <%= link_to 'Edit', edit_note_path(@note) %>    
 
 
 ### Delete action - [Git Diff](https://github.com/railsmn/open_camp/commit/7d9f6bc76314f9d85bd74a704536764402509e02)
