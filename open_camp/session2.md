@@ -271,7 +271,7 @@ We'll use a popular Ruby testing framework called, Rspec. Here's how to configur
  4. Let's try running it, 
  
     ```
-  rake spec
+  rake
     ```
 
  5. You should see this ouput in your console/terminal,  
