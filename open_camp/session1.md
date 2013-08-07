@@ -558,6 +558,10 @@ _form.html.erb
       </div>
     <% end %>
 
+And let's update the `index.html` to have a link to the new action:
+
+    <%= link_to 'New Note', new_note_path %>
+
 
 ### Update action - [Git Diff](https://github.com/railsmn/open_camp/commit/fbe6948aa16558bddeb3a41ee9c5be2ae5e0561a)
 Great. We can create a note, but now we want edit the ````note````.
