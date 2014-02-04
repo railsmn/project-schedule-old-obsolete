@@ -295,9 +295,9 @@ Open the  ````open_camp/app/models/note.rb````  file just to see what's in there
     # open_camp/app/models/note.rb
 
     class Note < ActiveRecord::Base
-      attr_accessible :body, :title
     end
 
+Before we move on to the next part, be sure to run `rake db:migrate` to add the `notes` table to your database.
 
 ### Controller
 
@@ -311,14 +311,11 @@ Next, create the controller,
     #
     # generate a controller with actions
     # 
-    rails generate controller Notes index show new edit create update destroy
+    rails generate controller Notes index show new edit 
 
 You should the following output in your terminal,  
 
     create  app/controllers/notes_controller.rb
-     route  get "notes/delete"
-     route  get "notes/update"
-     route  get "notes/create"
      route  get "notes/edit"
      route  get "notes/new"
      route  get "notes/show"
@@ -329,9 +326,6 @@ You should the following output in your terminal,
     create    app/views/notes/show.html.erb
     create    app/views/notes/new.html.erb
     create    app/views/notes/edit.html.erb
-    create    app/views/notes/create.html.erb
-    create    app/views/notes/update.html.erb
-    create    app/views/notes/delete.html.erb
     invoke  test_unit
     create    test/functional/notes_controller_test.rb
     invoke  helper
@@ -510,7 +504,7 @@ We'll add 2 methods,  ````new````  and  ````create````.
       end
 
       def create 
-        @note = Note.new(params[:note])
+        @note = Note.new params.require(:note).permit(:title, :body)
 
         if @note.save
           redirect_to @note, notice: 'Note was successfully created.'
@@ -563,6 +557,10 @@ _form.html.erb
       </div>
     <% end %>
 
+And let's update the `index.html` to have a link to the new action:
+
+    <%= link_to 'New Note', new_note_path %>
+
 
 ### Update action - [Git Diff](https://github.com/railsmn/open_camp/commit/fbe6948aa16558bddeb3a41ee9c5be2ae5e0561a)
 Great. We can create a note, but now we want edit the ````note````.
@@ -583,7 +581,7 @@ We'll load a note's attributes into the form, then get the attributes from the H
       def update
         @note = Note.find(params[:id])
 
-        if @note.update_attributes(params[:note])
+        if @note.update_attributes params.require(:note).permit(:title, :body)
           redirect_to @note, notice: 'Note was successfully updated.'
         else
           render action: "edit"
@@ -611,7 +609,7 @@ index.html.erb - added link to edit a note.
 
 show.html.erb - added link to edit a note. 
     
-    <%= link_to 'Edit', edit_note_path(note) %>    
+    <%= link_to 'Edit', edit_note_path(@note) %>    
 
 
 ### Delete action - [Git Diff](https://github.com/railsmn/open_camp/commit/7d9f6bc76314f9d85bd74a704536764402509e02)
@@ -636,8 +634,9 @@ We'll find the Note object, and destroy it,
 #### View
 There are no views since we redirect to the ````index``` page from the cotnroller action.
 
+But let's add a link from `index.html` to the new delete action so we can see the delete in action:
 
-
+    <%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %>
 
 
 [Link to presentation slides](http://railsmn.github.io/convention-mvc-rest.html)
