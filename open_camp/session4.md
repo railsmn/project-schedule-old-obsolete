@@ -291,11 +291,12 @@ This command will take a little bit to run and when it is complete your applicat
 ### Development Tools ###
 Now that we've been developing with Ruby on Rails for a while, there are a couple tools out there that make development (specifically debugging) much easier. Some of these that we use are:
 
-* Better Errors - when your application has an error, the browser will offer a much more detailed view of what happened
-* Binding of Caller - enhances Better Errors by giving you a console that you can type Ruby code into when there was an error to see what exactly happened
-* Pry - a better console that gives you a bunch more functionality when you run 'rails console' and also allowing you to set 'breakpoints' in your code where you can stop your code at a certain point to inspect what is happening
-* Meta Request - adds the ability to use the Google Chrome web inspector via RailsPanel to see what is happening with your Rails app
-* Google Chrome web inspector - built within Chrome to show you what a website is doing at the front-end (HTML, CSS, JavaScript)
+* [Better Errors](https://github.com/charliesome/better_errors) - when your application has an error, the browser will offer a much more detailed view of what happened
+* [Binding of Caller](https://github.com/banister/binding_of_caller) - enhances Better Errors by giving you a console that you can type Ruby code into when there was an error to see what exactly happened
+* [Pry](https://github.com/pry/pry) - a better console that gives you a bunch more functionality when you run 'rails console' and also allowing you to set 'breakpoints' in your code where you can stop your code at a certain point to inspect what is happening
+* [Meta Request](https://rubygems.org/gems/meta_request/versions/0.2.1) - adds the ability to use the Google Chrome web inspector via RailsPanel to see what is happening with your Rails app
+* [Google Chrome](https://www.google.com/intl/en/chrome/browser/) web inspector - built within Chrome to show you what a website is doing at the front-end (HTML, CSS, JavaScript). Access via View -> Developer -> Developer Tools.
+* [Firebug](http://getfirebug.com/) for [Firefox](http://www.mozilla.org/en-US/) - Similar to the Chrome web inspector, Firebug extends Firefox's built-in debugging tools to include a variety of other features.
 
 For some great resources about how to use these tools, check out the relevant RailsCasts writeups here:
 
